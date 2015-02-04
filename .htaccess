@@ -1,0 +1,24 @@
+allow from all
+
+RewriteEngine On
+Options +FollowSymLinks
+Options -Indexes
+RewriteBase /
+
+AddDefaultCharset utf-8
+AddCharset utf-8 *
+
+<IfModule mod_charset.c>
+	CharsetSourceEnc utf-8
+	CharsetDefault utf-8
+</IfModule>
+
+RewriteCond %{HTTP_HOST} ^www.homedom.ru$ [NC]
+RewriteRule ^(.*)$ http://homedom.ru/$1 [R=301,L]
+
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f  
+
+
+RewriteRule ^(.*)$ ./index.php?route=$1
+
